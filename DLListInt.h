@@ -1,5 +1,8 @@
 // Forward declarations and prototypes used in the classes below
 
+#include <iostream>
+#include <cstddef>
+
 class DLListInt;
 
 std::ostream& operator<<(std::ostream& os, const DLListInt& l);
@@ -52,3 +55,4 @@ private:
 // Auxiliary classes for throwing "exceptions" on violated preconditions
 class IndexError { };
 class StopIteration { };
+class DeallocError { };
