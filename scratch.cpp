@@ -8,7 +8,7 @@ int main(){
 	DLListInt L;
 	L.append(5);
 	L.append(6);
-	cout << L.length() << endl;
+	cout << L << endl;
 	
 
 return 0;

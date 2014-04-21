@@ -1,59 +1,69 @@
+#include <sstream>
+#include "DLListInt.h"
+
+using namespace std;
+
 void DLListInt::insert(int index, const int& item){
 	if(index == size){
 		append(item);
 		return;
 	}
-	IntNode newNode(item);
+	IntNode* newNode = new IntNode(item);
 	if(index == 0){
-		newNode.next_ = head;
+		newNode->next_ = head;
 		head->prev_ = newNode;
 		head = newNode;
 		return;
 	}
 	else{
-		IntNode* prev = find_(index -1);
-		newNode.prev_ = prev;
-		newNode.next_ = prev->next_;
+		IntNode* prev = _find(index -1);
+		newNode->prev_ = prev;
+		newNode->next_ = prev->next_;
 		prev->next_ = newNode;
-		newNode.next_->prev_ = newNode;
+		newNode->next_->prev_ = newNode;
 		return;
 	}
+}
 
 
-int DLListInt::pop(){
-	return _delete(-1);
+int DLListInt::pop(int index){
+	return _delete(index);
 }
 
 int& DLListInt::operator[](int index){
-	IntNode* node = find_(index);
+	IntNode* node = _find(index);
 	return node->item_;
 }
 
-std::string DLListInt::str(){
-	std::ostringstream str;
-	str << "[";
+string DLListInt::str() const{
+	ostringstream os;
+	os << "[";
+	IntNode* cur = head;
 	if(size > 0){
-		str << (*this)[0];
+		os << cur->item_;
 	}
 	for(int i = 1; i < size; i++){
-		str << ", " << (*this)[i];
+		cur = cur->next_;
+		os << ", " << cur->item_;
 	}
-	str << "]";
-	return str.str();
+	os << "]";
+	return os.str();
 }
 
 int DLListInt::next(){
-	int retval = nextiter->intem_;
+	if (nextiter==NULL) resetForward();
+	int retval = nextiter->item_;
 	nextiter = nextiter->next_;
 	return retval;
 }
 
-IntNode* DLListInt::find_(int index){
+IntNode* DLListInt::_find(int index){
+	IndexError e;
 	if(index < 0){
 		index += size;
 	}
 	if(index > size){
-		throw IndexError;
+		throw e;
 	}
 	IntNode* curr = head;
 	for(int i = 0; i < index; i++){
@@ -63,17 +73,87 @@ IntNode* DLListInt::find_(int index){
 }
 
 int DLListInt::_delete(int index){
-	ListNode* last = find_(-1);
-	ListNode* newLast = last->prev_;
+	IntNode* last = _find(-1);
+	int retval = last->item_;
+	IntNode* newLast = last->prev_;
 	newLast->next_ = NULL;
 	head = newLast;
 	size--;
 	delete last;
-	return;
+	return retval;
 }
 
+DLListInt::DLListInt(const DLListInt& from){
+	// post: Construct DLListInt
+	allocCopy(from);
+}
 
+DLListInt::~DLListInt(){
+	// post: dealloc DLListInt
+	dealloc();
+}
 
+DLListInt& DLListInt::operator=(const DLListInt& from){
+	// post: assignment operator
+	if (this!=&from){
+		dealloc();
+		allocCopy(from);
+	}
+}
+
+void DLListInt::allocCopy(const DLListInt& from){
+	// post: allocate storage for the current DLListInt using information from the other DLListInt "from"
+	IntNode* cur = from.head;
+	IntNode* mycur = head;
+	head = new IntNode(cur->item_);
+	for (int i=0;i<from.size-1;i++){
+		cur = cur->next_;
+		mycur->next_ = new IntNode(cur->item_,mycur);
+		mycur->next_->prev_ = mycur;
+	}
+	tail = mycur;
+}
+
+void DLListInt::append(const int& item){
+	// post: append the item into the current list
+	IntNode* newNode = new IntNode(item,NULL,tail);
+	
+	if (size==0){
+		head = newNode;
+		tail = newNode;
+		size++;
+		return;
+	}
+	
+	tail->next_ = newNode;
+	tail = newNode;
+	size++;
+}
+
+void DLListInt::dealloc(){
+	// post: dealloc the DLListInt
+	// Exception: DeallocError if the last element to dealloc is not tail, or if dealloc different number of nodes than size
+	DeallocError e;
+	if (size==0) return;
+	IntNode* cur = head;
+	int delsize = 0;
+	while (cur->next_!=NULL){
+		cur = cur->next_;
+		delete cur->prev_;
+		delsize++;
+	}
+	if (cur!=tail) throw e;
+	delete cur;
+	delsize++;
+	if (delsize!=size) throw e;
+	head = tail = NULL;
+	size = 0;
+}
+
+ostream& operator<<(ostream& os, const DLListInt& l){
+	os << l.str();
+	return os;
+}
 
 
 
