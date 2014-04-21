@@ -21,4 +21,7 @@
 *.app
 
 scratch
+testDLListInt
+
+# Gedit Backup
 *~

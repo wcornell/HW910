@@ -3,30 +3,48 @@
 
 using namespace std;
 
+
+IntNode* DLListInt::_find(int index){
+	// pre: -size<=index<size
+	// post: return a pointer to the indexed node
+	// Exception: IndexError
+	IndexError e;
+	if(index < 0){
+		index += size;
+	}
+	if(index > size or index < 0){
+		throw e;
+	}
+	IntNode* cur = head;
+	for(int i = 0; i < index; i++){
+		cur = cur->next_;
+	}
+	return cur;
+}
+
 void DLListInt::insert(int index, const int& item){
 	if(index == size){
 		append(item);
 		return;
 	}
-	IntNode* newNode = new IntNode(item);
 	if(index == 0){
+		IntNode* newNode = new IntNode(item);
 		newNode->next_ = head;
 		head->prev_ = newNode;
 		head = newNode;
-		return;
 	}
 	else{
 		IntNode* prev = _find(index -1);
-		newNode->prev_ = prev;
-		newNode->next_ = prev->next_;
+		IntNode* newNode = new IntNode(item,prev->next_,prev);
 		prev->next_ = newNode;
 		newNode->next_->prev_ = newNode;
-		return;
 	}
+	size++;
 }
 
 
 int DLListInt::pop(int index){
+	// post: return the indexed value and delete the corresponding node
 	return _delete(index);
 }
 
@@ -51,35 +69,22 @@ string DLListInt::str() const{
 }
 
 int DLListInt::next(){
-	if (nextiter==NULL) resetForward();
+	if (nextiter==NULL) nextiter=head;
 	int retval = nextiter->item_;
 	nextiter = nextiter->next_;
 	return retval;
 }
 
-IntNode* DLListInt::_find(int index){
-	IndexError e;
-	if(index < 0){
-		index += size;
-	}
-	if(index > size){
-		throw e;
-	}
-	IntNode* curr = head;
-	for(int i = 0; i < index; i++){
-		curr = curr->next_;
-	}
-	return curr;
-}
-
 int DLListInt::_delete(int index){
-	IntNode* last = _find(-1);
+	/*IntNode* last = _find(-1);
 	int retval = last->item_;
 	IntNode* newLast = last->prev_;
 	newLast->next_ = NULL;
 	head = newLast;
 	size--;
-	delete last;
+	delete last;*/
+	IntNode* nodeToDelete = _find(index);
+	int retval = nodeToDelete->item_;
 	return retval;
 }
 
@@ -103,15 +108,18 @@ DLListInt& DLListInt::operator=(const DLListInt& from){
 
 void DLListInt::allocCopy(const DLListInt& from){
 	// post: allocate storage for the current DLListInt using information from the other DLListInt "from"
+	AllocError e;
 	IntNode* cur = from.head;
-	IntNode* mycur = head;
 	head = new IntNode(cur->item_);
+	
+	IntNode* mycur = head;
 	for (int i=0;i<from.size-1;i++){
 		cur = cur->next_;
-		mycur->next_ = new IntNode(cur->item_,mycur);
-		mycur->next_->prev_ = mycur;
+		mycur->next_ = new IntNode(cur->item_,NULL,mycur);
+		size++;
 	}
 	tail = mycur;
+	if (++size!=from.size) throw e;
 }
 
 void DLListInt::append(const int& item){

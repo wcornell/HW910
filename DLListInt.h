@@ -56,3 +56,4 @@ private:
 class IndexError { };
 class StopIteration { };
 class DeallocError { };
+class AllocError { };
