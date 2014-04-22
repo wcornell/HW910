@@ -69,12 +69,15 @@ string DLListInt::str() const{
 }
 
 int DLListInt::next(){
+	if (nextiter==tail){
+		resetForward();
+		throw StopIteration();
+	}
 	
 	if (nextiter==NULL) nextiter=head;
-	int retval = nextiter->item_;
-	if (nextiter==tail) throw StopIteration();
-	nextiter = nextiter->next_;
-	return retval;
+	else nextiter = nextiter->next_;
+
+	return nextiter->item_;
 }
 
 int DLListInt::_delete(int index){
@@ -96,7 +99,8 @@ int DLListInt::_delete(int index){
 	return retval;
 }
 
-DLListInt::DLListInt(const DLListInt& from){
+DLListInt::DLListInt(const DLListInt& from)
+	: head(NULL), tail(NULL), nextiter(NULL), size(0){
 	// post: Construct DLListInt
 	allocCopy(from);
 }
@@ -125,6 +129,7 @@ void DLListInt::allocCopy(const DLListInt& from){
 	for (int i=0;i<from.size-1;i++){
 		cur = cur->next_;
 		mycur->next_ = new IntNode(cur->item_,NULL,mycur);
+		mycur = mycur->next_;
 		size++;
 	}
 	tail = mycur;
