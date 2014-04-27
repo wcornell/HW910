@@ -1,11 +1,11 @@
 #include <iostream>
-#include "DLListInt.h"
+#include "DLList.h"
 
 using namespace std;
 
 int main(){
 
-	DLListInt L;
+	DLList<int> L;
 	L.append(5);
 	L.append(6);
 	cout << L << endl;

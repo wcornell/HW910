@@ -8,11 +8,11 @@
 template <typename T>
 class DLList;
 template <typename T>
-std::ostream& operator<< <T>(std::ostream& os, const DLList<T>& l);
+std::ostream& operator<<(std::ostream& os, const DLList<T>& l);
 
 template <typename T>
-class Node<T> {
-	friend class DLList;
+class Node {
+	friend class DLList<T>;
 public:
 	Node(T item, Node * next = NULL, Node * prev = NULL)
 		: item_(item), next_(next), prev_(prev) {}
@@ -22,7 +22,8 @@ private:
 	Node * prev_;
 };
 
-class DLList<T> {
+template <typename T>
+class DLList {
 public:
 	// Constructors
 	DLList<T>()
@@ -44,17 +45,17 @@ public:
 	T next();
 
 private:
-	Node * head;
-	Node * tail;
-	Node * nextiter;
+	Node<T> * head;
+	Node<T> * tail;
+	Node<T> * nextiter;
 	int size;
 	void allocCopy(const DLList<T>& from);
 	void dealloc();
-	Node * _find(int index);
+	Node<T> * _find(int index);
 	int _delete(int index);
 
 	// Non-member friends
-	friend std::ostream& operator<<(std::ostream& os, const DLList& l);
+	friend std::ostream& operator<<<T>(std::ostream& os, const DLList& l);
 };
 
 // Auxiliary classes for throwing "exceptions" on violated preconditions

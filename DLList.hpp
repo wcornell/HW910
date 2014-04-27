@@ -17,7 +17,7 @@ DLList<T>::~DLList(){
 }
 
 template <typename T>
-DLList& DLList<T>::operator=(const DLList<T>& from){
+DLList<T>& DLList<T>::operator=(const DLList<T>& from){
 	// post: assignment operator
 	if (this != &from){ //if not self-assignment
 		dealloc(); //deallocate storage
@@ -29,7 +29,7 @@ DLList& DLList<T>::operator=(const DLList<T>& from){
 /* ====================== Public Methods ====================== */
 
 template <typename T>
-void DLList<T>::insert(int index, const int& item){
+void DLList<T>::insert(int index, const T& item){
 	// post: insert a Node with item at indexed
 	
 	if(index == size){ //if inserting at end
@@ -52,7 +52,7 @@ void DLList<T>::insert(int index, const int& item){
 }
 
 template <typename T>
-void DLList<T>::append(const int& item){
+void DLList<T>::append(const T& item){
 	// post: append the item into the current list
 	Node<T>* newNode = new Node<T>(item,NULL,tail); //create new node with prev of tail
 	
@@ -69,7 +69,7 @@ void DLList<T>::append(const int& item){
 }
 
 template <typename T>
-int DLList<T>::pop(int index){
+T DLList<T>::pop(int index){
 	// post: return the indexed value and delete the corresponding node
 	return _delete(index);
 }
@@ -91,7 +91,7 @@ string DLList<T>::str() const{
 }
 
 template <typename T>
-int DLList<T>::next(){
+T DLList<T>::next(){
 	if (nextiter==tail){
 		resetForward();
 		throw StopIteration();
@@ -178,13 +178,13 @@ void DLList<T>::dealloc(){
 /* ===================== Operators ===================== */
 
 template <typename T>
-int& DLList<T>::operator[](int index){
+T& DLList<T>::operator[](int index){
 	Node<T>* node = _find(index); //find node at index
 	return node->item_; //return it's item
 }
 
 template <typename T>
-ostream& operator<<<T>(ostream& os, const DLList<T>& l){
+ostream& operator<<(ostream& os, const DLList<T>& l){
 	os << l.str(); //insert string representation into os
 	return os; //return os
 }
