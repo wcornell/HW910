@@ -5,20 +5,21 @@
 #include <iostream>
 #include <sstream>
 
-#define _ORDEREDSET__EMPTYSET 5
-#define _ORDEREDSET__SETFULL 6
 #define _ORDEREDSET__MAXSIZE 1000
 
-typedef Event* EPointer;
 
+template <typename T>
+typedef T* TPointer;
+
+template <typename T>
 class OrderedSet {
 public:
     OrderedSet(int maxsize=_ORDEREDSET__MAXSIZE)
-        {maxsize_=maxsize;size_=0;elements_=new EPointer[maxsize];};
+        {maxsize_=maxsize;size_=0;elements_=new TPointer[maxsize];};
     ~OrderedSet()
     	{delete[] elements_;};
-    int insert(EPointer x);
-    EPointer removeFirst();
+    int insert(TPointer x);
+    TPointer removeFirst();
     int remove(int x);
     int len();
     
@@ -27,7 +28,7 @@ public:
 private:
     int maxsize_;
     int size_;
-    EPointer *elements_;
+    TPointer *elements_;
     void _insertionSort();
 };
 
