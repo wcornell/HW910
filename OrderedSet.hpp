@@ -9,14 +9,11 @@ int OrderedSet::insert(TPointer newT){
 	// special case: size_==0
 	
     if (size_==0){
-        elements_[0]=newT;
-        size_++;
+        elements_.append(newT);
         return 1;
     }
-    // stop insertion if set is full
-    if (size_==maxsize_) return 0;
-    // do not insert replica
-    for (int i=0;i<size_;i++){
+
+    for (int i=0; i < elements_.len();i++){
     	if (elements_[i]->id()==newT->id())
     		remove(elements_[i]->id());
     }
@@ -24,12 +21,12 @@ int OrderedSet::insert(TPointer newT){
     // figure out index
     int idxToInsert=0; // insert at front if newEvent is smallest
     
-    if (size_==1){
+    if (elements_.len()==1){
 		if (*elements_[0]<=*newT){
 			idxToInsert = 1;
     	}
     } else { // size_ > 1
-		for (int i=size_-1;i>0;i--){
+		for (int i=elements_.len()-1;i>0;i--){
 			if (elements_[i]<=newT){ // insert in the middle if newEvent is not smallest
 				idxToInsert = i+1;
 				break;
@@ -38,8 +35,8 @@ int OrderedSet::insert(TPointer newT){
 	}
 	
     // perform insertion
-    elements_[size_++] = newT;
-    for (int i=size_-2;i>=idxToInsert;i--){
+    elements_.append() = newT;
+    for (int i = elements_.len()-2; i >= idxToInsert; i--){
     	swap(elements_[i],elements_[i+1]);
     }  		 
     
@@ -51,12 +48,8 @@ TPointer OrderedSet::removeFirst(){
 	// pre: set should not be full
 	// post: the first element in the set is removed and returned 
 	// Exception: throw _ORDEREDSET__EMPTYSET
-	if (size_==0) throw _ORDEREDSET__EMPTYSET;
-	TPointer firstT;
-	firstEvent = elements_[0];
-	for (int i=1;i<size_;i++) elements_[i-1]=elements_[i];
-	size_--;
-	return firstT;
+	if (elements_.len()==0) throw _ORDEREDSET__EMPTYSET;
+	return elements_.pop(0);
 }
 
 template <typename T>
@@ -64,10 +57,7 @@ int OrderedSet::remove(int x){
 	// post: remove the event with id x and return 1, or return 0 if its not found
 	for (int i=0;i<size_;i++){
 		if ( elements_[i]->id()==x ){
-			for (int j=i;j<size_-1;j++){
-				elements_[j] = elements_[j+1];
-			}
-			size_--;
+			elements_.pop(i);
 			return 1;
 		}
 	}
@@ -97,5 +87,5 @@ string OrderedSet::str(){
 }
 
 template <typename T>
-int OrderedSet::len(){return size_;}
+int OrderedSet::len(){return elements_.len();}
 

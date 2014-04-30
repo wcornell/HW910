@@ -14,10 +14,8 @@ typedef T* TPointer;
 template <typename T>
 class OrderedSet {
 public:
-    OrderedSet(int maxsize=_ORDEREDSET__MAXSIZE)
-        {maxsize_=maxsize;size_=0;elements_=new TPointer[maxsize];};
-    ~OrderedSet()
-    	{delete[] elements_;};
+    OrderedSet()
+        {elements_= DLList<T>;};
     int insert(TPointer x);
     TPointer removeFirst();
     int remove(int x);
@@ -26,8 +24,6 @@ public:
     std::string str();
     
 private:
-    int maxsize_;
-    int size_;
     TPointer *elements_;
     void _insertionSort();
 };
