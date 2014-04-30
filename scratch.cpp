@@ -1,15 +1,13 @@
 #include <iostream>
-#include "DLList.h"
+#include "Queue.h"
+#include "Customer.h"
 
 using namespace std;
 
 int main(){
 
-	DLList<int> L;
-	L.append(5);
-	L.append(6);
-	cout << L << endl;
-	
+	Queue<Customer> Q;
+	Q.str();
 
 return 0;
 }

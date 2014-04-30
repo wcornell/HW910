@@ -5,79 +5,79 @@
 
 using namespace std;
 
-TEST(DLList, EmptyConstructor) {
+TEST(DLListint, EmptyConstructor) {
 // create empty queue and verify string representation
-	DLList L;
+	DLList<int> L;
 	EXPECT_EQ(0, L.length());
 	EXPECT_EQ(string("[]"), L.str());
 }
 
-TEST(DLList, AppendOne) {
-  DLList L;
+TEST(DLListint, AppendOne) {
+  DLList<int> L;
   L.append(5);
   EXPECT_EQ(string("[5]"), L.str());
 
-  DLList T;
+  DLList<int> T;
   T.append(-10);
   EXPECT_EQ(string("[-10]"), T.str());
 }
 
-TEST(DLList, InsertOne) {
-  DLList L;
+TEST(DLListint, InsertOne) {
+  DLList<int> L;
   L.insert(0, 5);
   EXPECT_EQ(string("[5]"), L.str());
 
-  DLList T;
+  DLList<int> T;
   T.insert(0, -10);
   EXPECT_EQ(string("[-10]"), T.str());
 }
 
-TEST(DLList, AppendTwo) {
-  DLList L;
+TEST(DLListint, AppendTwo) {
+  DLList<int> L;
   L.append(5);
   L.append(-10);
   EXPECT_EQ(string("[5, -10]"), L.str());
 }
 
-TEST(DLList, InsertTwoAtHead) {
-  DLList L;
+TEST(DLListint, InsertTwoAtHead) {
+  DLList<int> L;
   L.insert(0, 5);
   L.insert(0, -10);
   EXPECT_EQ(string("[-10, 5]"), L.str());
 }
 
-TEST(DLList, InsertTwoInOrder) {
-  DLList L;
+TEST(DLListint, InsertTwoInOrder) {
+  DLList<int> L;
   L.insert(0, 5);
   L.insert(1, -10);
   EXPECT_EQ(string("[5, -10]"), L.str());
 }
 
-TEST(DLList, AppendThree) {
-  DLList L;
+TEST(DLListint, AppendThree) {
+  DLList<int> L;
   L.append(5);
   L.append(-10);
   L.append(7);
   EXPECT_EQ(string("[5, -10, 7]"), L.str());
 }
 
-TEST(DLList, InsertThreeAtHead) {
-  DLList L;
+TEST(DLListint, InsertThreeAtHead) {
+  DLList<int> L;
   L.insert(0, 5);
   L.insert(0, -10);
   L.insert(0, 7);
   EXPECT_EQ(string("[7, -10, 5]"), L.str());
 }
 
-TEST(DLList, AppendThreeInsertMiddle) {
-  DLList L;
+TEST(DLListint, AppendThreeInsertMiddle) {
+  DLList<int> L;
   L.append(5);
   L.append(-10);
   L.append(7);
   L.insert(2, 1);
   EXPECT_EQ(string("[5, -10, 1, 7]"), L.str());
 
-  DLList T;
+  DLList<int> T;
   T.append(5);
   T.append(-10);
   T.append(7);
@@ -85,9 +85,9 @@ TEST(DLList, AppendThreeInsertMiddle) {
   EXPECT_EQ(string("[5, 1, -10, 7]"), T.str());
 }
 
-TEST(DLList, AccessAscending)
+TEST(DLListint, AccessAscending)
 {
-  DLList L;
+  DLList<int> L;
   for (int i = 0; i < 5; i++) {
     L.insert(i, i);
   }
@@ -96,9 +96,9 @@ TEST(DLList, AccessAscending)
   }
 }
 
-TEST(DLList, AccessDescending)
+TEST(DLListint, AccessDescending)
 {
-  DLList L;
+  DLList<int> L;
   for (int i = 0; i < 5; i++) {
     L.insert(i, 5-i);
   }
@@ -107,10 +107,10 @@ TEST(DLList, AccessDescending)
   }
 }
 
-TEST(DLList, PopOnly)
+TEST(DLListint, PopOnly)
 {
   int val;
-  DLList L;
+  DLList<int> L;
   L.append(5);
   val = L.pop();
   EXPECT_EQ(5, val);
@@ -118,9 +118,9 @@ TEST(DLList, PopOnly)
   EXPECT_EQ(0, L.length());
 }
 
-TEST(DLList, PopLast)
+TEST(DLListint, PopLast)
 {
-  DLList L;
+  DLList<int> L;
   int val1, val2, val3;
   L.append(5);
   L.append(7);
@@ -137,9 +137,9 @@ TEST(DLList, PopLast)
   EXPECT_EQ(0, L.length());
 }
 
-TEST(DLList, PopFirst)
+TEST(DLListint, PopFirst)
 {
-  DLList L;
+  DLList<int> L;
   int val1, val2, val3;
   L.append(5);
   L.append(7);
@@ -156,9 +156,9 @@ TEST(DLList, PopFirst)
   EXPECT_EQ(0, L.length());
 }
 
-TEST(DLList, PopMiddle)
+TEST(DLListint, PopMiddle)
 {
-  DLList L;
+  DLList<int> L;
   int val1, val2, val3;
   L.append(5);
   L.append(7);
@@ -177,53 +177,53 @@ TEST(DLList, PopMiddle)
   EXPECT_EQ(2, L.length());
 }
 
-TEST(DLList, InsertMultiple)
+TEST(DLListint, InsertMultiple)
 {
-  DLList s;
-  s.insert(0, 5);
-  s.insert(1, 7);
-  s.insert(2, 6);
-  s.insert(3, 4);
-  s.insert(4, 9);
-  s.insert(3, 10);
-  s.insert(1, 11);
-  s.insert(5, 12);
-  s.insert(0, 13);
-  s.insert(1, 14);
-  EXPECT_EQ(string("[13, 14, 5, 11, 7, 6, 10, 12, 4, 9]"), s.str());
+  DLList<int> L;
+  L.insert(0, 5);
+  L.insert(1, 7);
+  L.insert(2, 6);
+  L.insert(3, 4);
+  L.insert(4, 9);
+  L.insert(3, 10);
+  L.insert(1, 11);
+  L.insert(5, 12);
+  L.insert(0, 13);
+  L.insert(1, 14);
+  EXPECT_EQ(string("[13, 14, 5, 11, 7, 6, 10, 12, 4, 9]"), L.str());
 }
 
-TEST(DLList, Assign)
+TEST(DLListint, Assign)
 {
-  DLList s;
-  s.insert(0, 5);
-  s.insert(1, 7);
-  s.insert(2, 6);
-  s.insert(3, 4);
-  s.insert(4, 9);
+  DLList<int> L;
+  L.insert(0, 5);
+  L.insert(1, 7);
+  L.insert(2, 6);
+  L.insert(3, 4);
+  L.insert(4, 9);
   for (int i=0; i < 5; i++) {
-    s[i] = 5-i;
+    L[i] = 5-i;
   }
-  EXPECT_EQ(string("[5, 4, 3, 2, 1]"), s.str());
+  EXPECT_EQ(string("[5, 4, 3, 2, 1]"), L.str());
 }
 
-TEST(DLList, PopEmpty)
+TEST(DLListint, PopEmpty)
 {
-  DLList L;
+  DLList<int> L;
   EXPECT_THROW(L.pop(), IndexError);
 }
 
-TEST(DLList, PopEmptyInOut)
+TEST(DLListint, PopEmptyInOut)
 {
-  DLList L;
+  DLList<int> L;
   L.append(5);
   L.pop();
   EXPECT_THROW(L.pop(), IndexError);
 }
 
-TEST(DLList, IterThree)
+TEST(DLListint, IterThree)
 {
-  DLList L;
+  DLList<int> L;
   L.append(0);
   L.append(1);
   L.append(2);
@@ -237,39 +237,39 @@ TEST(DLList, IterThree)
   }
 }
 
-TEST(DLList, CopyConstructor1)
+TEST(DLListint, CopyConstructor1)
 {
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
-  DLList L2(L);
+  DLList<int> L2(L);
   for (int i=0; i<5; i++) {
     EXPECT_EQ(2-i, L2[i]);
   }
   EXPECT_EQ(5, L2.length());
 }
 
-TEST(DLList, CopyConstructorNext)
+TEST(DLListint, CopyConstructorNext)
 {
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
-  DLList L2(L);
+  DLList<int> L2(L);
   for (int i=0; i<5; i++) {
     EXPECT_EQ(2-i, L2.next());
   }
   EXPECT_EQ(5, L2.length());
 }
 
-TEST(DLList, CopyConstructorValTest)
+TEST(DLListint, CopyConstructorValTest)
 {
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
-  DLList L2(L);
+  DLList<int> L2(L);
   // Change all the values in L before checking copied values in L2
   for (int i=0; i<5; i++) {
     L[i] = 10 + i;
@@ -280,13 +280,13 @@ TEST(DLList, CopyConstructorValTest)
   EXPECT_EQ(5, L2.length());
 }
 
-TEST(DLList, Assignment1)
+TEST(DLListint, Assignment1)
 {
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
-  DLList L2;
+  DLList<int> L2;
   L2 = L;
   for (int i=0; i<5; i++) {
     EXPECT_EQ(2-i, L2[i]);
@@ -294,13 +294,13 @@ TEST(DLList, Assignment1)
   EXPECT_EQ(5, L2.length());
 }
 
-TEST(DLList, AssignmentValTest)
+TEST(DLListint, AssignmentValTest)
 {
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
-  DLList L2;
+  DLList<int> L2;
   L2 = L;
   // Change all the values in L before checking copied values in L2
   for (int i=0; i<5; i++) {
@@ -312,15 +312,15 @@ TEST(DLList, AssignmentValTest)
   EXPECT_EQ(5, L2.length());
 }
 
-TEST(DLList, StreamOverload)
+TEST(DLListint, StreamOverload)
 {
   stringstream s;
-  DLList L;
+  DLList<int> L;
   for (int i=0; i<5; i++) {
     L.append(2-i);
   }
   s << L;
-  EXPECT_EQ(string("[2, 1, 0, -1, -2]"), s.str());
+  EXPECT_EQ(string("[2, 1, 0, -1, -2]"), L.str());
 }
 
 int main(int argc, char **argv) {

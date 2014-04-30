@@ -7,14 +7,15 @@ CS 173  */
 #define QUEUE_H
 #include<iostream>
 #include<sstream>
+#include "DLList.h"
 
 #define _QUEUE_MAXSIZE 1000
 
 template <typename T>
 class Queue{
 	public:
-		Queue(int maxsize = _QUEUE_MAXSIZE);
-		~Queue();
+		Queue(int maxsize = _QUEUE_MAXSIZE){maxsize_=maxsize;};
+		~Queue(){};
 		int enqueue(T &x);
 		T dequeue();
 		int len();
@@ -22,9 +23,6 @@ class Queue{
 	
 	private:
 		int maxsize_;
-		int start_;
-		int tail_;
-		int length_;
 		DLList<T> L;
 };
 

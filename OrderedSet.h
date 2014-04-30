@@ -1,25 +1,23 @@
-/* OrderedSet class */
+/* OrderedSet class 
+====================
+Maintains an ordered set of pointers to class with method id()
+*/
 
 #ifndef ORDEREDSET_H
 #define ORDEREDSET_H
 #include <iostream>
 #include <sstream>
+#include "DLList.h"
 
 #define _ORDEREDSET__MAXSIZE 1000
-
-
-template <typename T>
-typedef T* TPointer;
 
 template <typename T>
 class OrderedSet {
 public:
-    OrderedSet(int maxsize=_ORDEREDSET__MAXSIZE)
-        {maxsize_=maxsize;size_=0;elements_=new TPointer[maxsize];};
-    ~OrderedSet()
-    	{delete[] elements_;};
-    int insert(TPointer x);
-    TPointer removeFirst();
+    OrderedSet(int maxsize=_ORDEREDSET__MAXSIZE){maxsize_=maxsize;};
+    ~OrderedSet(){};
+    int insert(T x);
+    T removeFirst();
     int remove(int x);
     int len();
     
@@ -27,10 +25,11 @@ public:
     
 private:
     int maxsize_;
-    int size_;
-    TPointer *elements_;
-    void _insertionSort();
+    DLList<T> L;
 };
+
+class EmptySet{};
+class SetFull{};
 
 #include "OrderedSet.hpp"
 #endif // ORDEREDSET_H

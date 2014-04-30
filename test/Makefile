@@ -17,7 +17,7 @@
 GTEST_DIR = ~/gtest-1.7.0
 
 # Where to find user code.
-SRC_DIR = ../
+SRC_DIR = ..
 USER_DIR = .
 TEST_DIR = .
 
@@ -31,7 +31,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = testDLList
+TESTS = testDLList testQueue
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -69,36 +69,33 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-# Builds two Rational test executables.  A test should link with either gtest.a or
-# gtest_main.a, depending on whether it defines its own main()
-# function.
+Event.o : $(SRC_DIR)/Event.cpp $(SRC_DIR)/Event.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Event.cpp
 
-#Event.o : $(SRC_DIR)/Event.cpp $(SRC_DIR)/Event.h
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Event.cpp
-	
-#OrderedSet.o : $(SRC_DIR)/OrderedSet.cpp $(SRC_DIR)/OrderedSet.h
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/OrderedSet.cpp
-
-#Customer.o : $(SRC_DIR)/Customer.cpp $(SRC_DIR)/Customer.h
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Customer.cpp
-	
-#Queue.o : $(SRC_DIR)/Queue.cpp $(SRC_DIR)/Queue.h
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Queue.cpp
+Customer.o : $(SRC_DIR)/Customer.cpp $(SRC_DIR)/Customer.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Customer.cpp
 
 #testEvent.o : $(TEST_DIR)/testEvent.cpp \
 #                     $(SRC_DIR)/Event.h $(GTEST_HEADERS)
 #	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testEvent.cpp
-
-#testOrderedSet.o : $(TEST_DIR)/testOrderedSet.cpp \
-#                     $(SRC_DIR)/OrderedSet.h $(GTEST_HEADERS)
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testOrderedSet.cpp
-	
-DLList.o : $(SRC_DIR)/DLList.cpp $(SRC_DIR)/DLList.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/DLList.cpp
 	
 testDLList.o : $(TEST_DIR)/testDLList.cpp \
                      $(SRC_DIR)/DLList.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testDLList.cpp
 	
-testDLList : DLList.o testDLList.o gtest_main.a
+testQueue.o : $(TEST_DIR)/testQueueDrB.cpp \
+                     $(SRC_DIR)/Queue.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testQueueDrB.cpp
+	
+testOrderedSet.o : $(TEST_DIR)/testOrderedSetDrB.cpp \
+                     $(SRC_DIR)/OrderedSet.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testOrderedSetDrB.cpp
+	
+testDLList : testDLList.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	
+testQueue : testQueueDrB.o Customer.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	
+testOrderedSet : testOrderedSetDrB.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
