@@ -6,32 +6,38 @@ int OrderedSet<PointerType>::insert(PointerType newPointer){
 	// post: x is inserted while maintaining order of the set. If x compares equal with other elements, it will be the last of such elements. If x is identical with another element, it will not be inserted. If insertion is successful the function returns 1, otherwise it returns 0.
 	// Exception: SetFull if set is full
 
-	// special case: L.length()==0
+    // remove replica
+    for (int i=0;i<L.length();i++){
+    	if (L[i]->id()==newPointer->id()){
+    		L.pop(i);
+		}
+    }
+    // special case: stop insertion if set is full
+    if (L.length()==maxsize_){
+    	return 0;
+	}
+    
+    // special case: L.length()==0
     if (L.length()==0){
         L.append(newPointer);
         return 1;
     }
-    // stop insertion if set is full
-    if (L.length()==maxsize_) return 0;
-    // remove replica
-    for (int i=0;i<L.length();i++){
-    	if (L[i]->id()==newPointer->id())
-    		L.pop(i);
-    }
-    
-    // figure out index to insert
-    int idxToInsert=0; // insert at front if newEvent is smallest
-    
+    // special case: L.length()==1
     if (L.length()==1){
 		if (*L[0]<=*newPointer){
-			idxToInsert = 1;
-    	}
-    } else { // L.length() > 1
-		for (int i=L.length()-1;i>0;i--){
-			if (*L[i]<=*newPointer){ // insert in the middle if newEvent is not smallest
-				idxToInsert = i+1;
-				break;
-			}
+			L.append(newPointer);
+		} else {
+			L.insert(0,newPointer);
+		}
+		return 1;
+    }
+    
+    // L.length() > 1, need to figure out index to insert
+    int idxToInsert=0; 
+	for (int i=L.length()-1;i>=0;i--) {
+		if (*L[i]<=*newPointer){
+			idxToInsert = i+1;
+			break;
 		}
 	}
 	
