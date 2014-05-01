@@ -14,7 +14,7 @@ returns an integer 0 if the enqueue fails and an integer 1 if it succeeds
 		L.insert(0,x);
 		return 1;
 	} else {
-		throw IndexError();
+		throw _QUEUE_INDEXERROR;
 	}
 }
 
@@ -22,10 +22,10 @@ template <typename T>
 T Queue<T>::dequeue(){
 /*pre: the queue is not empty
 post: removes and returns the next element in the queue
-Exception: throws IndexError the Queue is full
+Exception: throws 0 the Queue is full
 */
 	if (L.length() == 0){ // throws 1 if the queue is empty
-		throw IndexError();
+		throw _QUEUE_INDEXERROR;
 	}
 	T x;	
 	x = L.pop();	// returns the top element of the queue
@@ -44,7 +44,13 @@ template <typename T>
 std::string Queue<T>::str(){
 /* creates a string representation of the queue*/
     stringstream os;
-    os << L;
+    if (L.length()==0) return "[]";
+    
+    os << "[" << L[0] << "*";
+    for (int i=1;i<L.length();i++){
+    	os << "," << L[i];
+    }
+    os << "]";
     return os.str();
 }
 

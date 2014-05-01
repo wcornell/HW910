@@ -52,10 +52,10 @@ private:
 	void allocCopy(const DLList<T>& from);
 	void dealloc();
 	Node<T> * _find(int index);
-	int _delete(int index);
+	T _delete(int index);
 
 	// Non-member friends
-	friend std::ostream& operator<<<T>(std::ostream& os, const DLList& l);
+	friend std::ostream& operator<<<T>(std::ostream& os, const DLList<T>& l);
 };
 
 // Auxiliary classes for throwing "exceptions" on violated preconditions

@@ -1,5 +1,5 @@
 all: scratch
 	
-scratch: scratch.cpp Customer.cpp
+scratch: scratch.cpp Event.cpp
 	g++ -o $@ -g $^
 	

@@ -8,21 +8,21 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <string>
-#include "OrderedSet.h"
-#include "Event.h"
+#include "../OrderedSet.h"
+#include "../Event.h"
 
 using namespace std;
 
 TEST(OrderedSet, EmptyConstructor)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   EXPECT_EQ(S.str(), string("[]"));
   EXPECT_EQ(S.len(), 0);
 }
 
 TEST(OrderedSet, InsertOne)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1;
   S.insert(&e1);
   string expect("[<Event 0: -1");
@@ -32,7 +32,7 @@ TEST(OrderedSet, InsertOne)
 
 TEST(OrderedSet, InsertOneTestLen)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1;
   S.insert(&e1);
   string expect("[<Event 0: -1");
@@ -41,7 +41,7 @@ TEST(OrderedSet, InsertOneTestLen)
 
 TEST(OrderedSet, InsertTwoSameEvent)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e(2, 2.5);
   S.insert(&e);
   S.insert(&e);
@@ -53,7 +53,7 @@ TEST(OrderedSet, InsertTwoSameEvent)
 
 TEST(OrderedSet, InsertRemoveOne)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(2, 2.5);
   S.insert(&e1);
   Event * e2;
@@ -65,13 +65,13 @@ TEST(OrderedSet, InsertRemoveOne)
 
 TEST(OrderedSet, RemoveFirstEmpty)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   EXPECT_THROW(S.removeFirst(), int);
 }
 
 TEST(OrderedSet, RemoveFirstEmptyInOut)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e;
   S.insert(&e);
   S.removeFirst();
@@ -80,7 +80,7 @@ TEST(OrderedSet, RemoveFirstEmptyInOut)
 
 TEST(OrderedSet, InsertTwoDiffValInorder)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(2, 2.5);
   Event e2(1, 3.5);
   S.insert(&e1);
@@ -94,7 +94,7 @@ TEST(OrderedSet, InsertTwoDiffValInorder)
 
 TEST(OrderedSet, InsertTwoDiffValOutorder)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(2, 3.5);
   Event e2(1, 2.5);
   S.insert(&e1);
@@ -108,7 +108,7 @@ TEST(OrderedSet, InsertTwoDiffValOutorder)
 
 TEST(OrderedSet, InsertTwoSameVal)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(2, 3.5);
   Event e2(1, 3.5);
   S.insert(&e1);
@@ -122,7 +122,7 @@ TEST(OrderedSet, InsertTwoSameVal)
 
 TEST(OrderedSet, InsertMultipleDistinct)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 2.5);
   Event e3(3, 4.25);
@@ -141,7 +141,7 @@ TEST(OrderedSet, InsertMultipleDistinct)
 
 TEST(OrderedSet, InsertMultipleWRepeat)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 5);
@@ -168,7 +168,7 @@ TEST(OrderedSet, InsertMultipleWRepeat)
 
 TEST(OrderedSet, InsertDupDown1)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);
@@ -188,7 +188,7 @@ TEST(OrderedSet, InsertDupDown1)
 
 TEST(OrderedSet, InsertDupDown2)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);
@@ -207,7 +207,7 @@ TEST(OrderedSet, InsertDupDown2)
 
 TEST(OrderedSet, InsertDupUp1)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);
@@ -229,7 +229,7 @@ TEST(OrderedSet, InsertDupUp1)
 
 TEST(OrderedSet, InsertDupUp2)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);
@@ -253,7 +253,7 @@ TEST(OrderedSet, InsertDupUp2)
 
 TEST(OrderedSet, Remove)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 3);
   S.insert(&e1);
@@ -272,7 +272,7 @@ TEST(OrderedSet, Remove)
 
 TEST(OrderedSet, BadRemove)
 {
-  OrderedSet S;
+  OrderedSet<Event*> S;
   Event e1(1, 5);
   Event e2(2, 3);
   S.insert(&e1);
@@ -283,7 +283,7 @@ TEST(OrderedSet, BadRemove)
 
 TEST(OrderedSet, InsertOnFull)
 {
-  OrderedSet S(4);
+  OrderedSet<Event*> S(4);
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);
@@ -301,7 +301,7 @@ TEST(OrderedSet, InsertOnFull)
 
 TEST(OrderedSet, InsertDupOnFull)
 {
-  OrderedSet S(4);
+  OrderedSet<Event*> S(4);
   Event e1(1, 5);
   Event e2(2, 9.5);
   Event e3(3, 7);

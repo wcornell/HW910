@@ -9,6 +9,7 @@ CS 173  */
 #include<sstream>
 #include "DLList.h"
 
+#define _QUEUE_INDEXERROR 0
 #define _QUEUE_MAXSIZE 1000
 
 template <typename T>

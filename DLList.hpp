@@ -123,7 +123,7 @@ Node<T>* DLList<T>::_find(int index){
 }
 
 template <typename T>
-int DLList<T>::_delete(int index){
+T DLList<T>::_delete(int index){
 	
 	Node<T>* nodeToDelete = _find(index);
 	
@@ -134,7 +134,7 @@ int DLList<T>::_delete(int index){
 	if (nodeToDelete->prev_!=NULL) nodeToDelete->prev_->next_=nodeToDelete->next_;
 	if (nodeToDelete->next_!=NULL) nodeToDelete->next_->prev_=nodeToDelete->prev_;
 	
-	int retval = nodeToDelete->item_;
+	T retval = nodeToDelete->item_;
 	size--;
 	return retval;
 }
