@@ -31,7 +31,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = testOrderedSet
+TESTS = testDLList testQueue testOrderedSet
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.

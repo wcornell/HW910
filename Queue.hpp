@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename T>
-int Queue<T>::enqueue (T &x){
+int Queue<T>::enqueue (T& x){
 /*pre: The length of queue is <= maxsize
 post: x is added to the end of the queue
 returns an integer 0 if the enqueue fails and an integer 1 if it succeeds
