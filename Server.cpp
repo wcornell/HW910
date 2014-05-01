@@ -41,6 +41,7 @@ void Server::startService(Customer& c){
 		// reschedule
 		busy = true;
 		time_ = sim_->now() + (*exp)(*gen);
+		sim_->insert(this);
 	}
 }
 
