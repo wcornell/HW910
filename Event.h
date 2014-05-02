@@ -26,5 +26,7 @@ protected:
     int id_;
     double time_;
 };
+//std::ostream& operator<<(std::ostream& os, const Event& e)
+	//{ os << e.str(); return os;};
 #endif // EVENT_H
 

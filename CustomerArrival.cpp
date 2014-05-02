@@ -10,9 +10,7 @@ CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server** s
 {
 	mean_ = mean;
 	Q = queue;
-	for(int i = 0; i < serverCount_; i++){
-		S[i] = server[i];
-	}
+	S=server;
 	sim_ = sim;
 	count_ = count;
 	time_ = time;

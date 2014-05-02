@@ -5,12 +5,11 @@
 
 using namespace std;
 
-Simulator::Simulator(std::string arrivalFile, std::string serverFile, bool surpressOutput, int serverCount)
+Simulator::Simulator(int serverCount, std::string arrivalFile, bool surpressOutput)
 {
 	S = new Server*[serverCount];
 	vtime_ = 0; 
-	arrivalFile_ = arrivalFile; 
-	serverFile_ = serverFile;
+	arrivalFile_ = arrivalFile;
 	surpressOutput_=surpressOutput; 
 	spaceAllocated_ = false;
 	serverCount_ = serverCount;
@@ -43,7 +42,9 @@ void Simulator::setup(int custCount, double arrivalMean, int serverCount, double
 	}
 	Q = new Queue<Customer>(custCount);
 	for(int i = 0; i < serverCount_; i++){
-		S[i] = new Server(serviceMean,Q,this,serverFile_);
+		ostringstream serverFile;
+		serverFile << "server" << i << "Report.dat";
+		S[i] = new Server(serviceMean,Q,this,serverFile.str());
 		S[i]->setid(i);
 	}
 	A = new CustomerArrival(arrivalMean,Q,S,this, serverCount_, custCount,now(),arrivalFile_);

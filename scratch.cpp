@@ -5,8 +5,8 @@ using namespace std;
 
 int main(){
 
-  Simulator S;
-  S.setup(10);
+  Simulator S(2);
+  S.setup(1000);
   S.doAllEvents();
   
   

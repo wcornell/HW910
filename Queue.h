@@ -14,6 +14,8 @@ CS 173  */
 
 template <typename T>
 class Queue{
+	friend std::ostream& operator<<(std::ostream& os, const Queue& q)
+		{os << q.str(); return os;};
 	public:
 		Queue(int maxsize = _QUEUE_MAXSIZE){maxsize_=maxsize;};
 		~Queue(){};

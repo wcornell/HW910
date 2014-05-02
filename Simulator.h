@@ -12,7 +12,7 @@ typedef Event* EPointer;
 
 class Simulator{
 public:
-	Simulator(std::string arrivalFile = "ArrivalReport.dat", std::string serverFile = "ServerReport.dat", bool surpressOutput = false, int serverCount = 1);
+	Simulator(int serverCount = 1,std::string arrivalFile = "ArrivalReport.dat", bool surpressOutput = false);
 	virtual ~Simulator();
 	double now() const;
 	int insert(EPointer e);
@@ -23,7 +23,7 @@ public:
 private:
 	double vtime_;
 	OrderedSet<EPointer> events;
-	std::string arrivalFile_, serverFile_;
+	std::string arrivalFile_;
 	bool surpressOutput_;
 	Queue<Customer>* Q;
 	Server** S;

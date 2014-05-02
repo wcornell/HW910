@@ -3,7 +3,6 @@
 #include<iostream>
 
 class Customer;
-std::ostream& operator<<(std::ostream& os, const Customer& c);
 
 class Customer{
 	public:
@@ -16,9 +15,6 @@ class Customer{
 	private:
 		double time_;
 		std::string label_;
-		
-	// Non-member friends
-	friend std::ostream& operator<<(std::ostream& os, const Customer& c);
 };
 
 #endif

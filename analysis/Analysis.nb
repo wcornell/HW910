@@ -1,0 +1,288 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9849,        279]
+NotebookOptionsPosition[      9344,        258]
+NotebookOutlinePosition[      9681,        273]
+CellTagsIndexPosition[      9638,        270]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<ServiceLine`\>\"", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6065615197648077`*^9, 3.6065615422606*^9}, {
+  3.6065627099867897`*^9, 3.606562717350273*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"arrival", " ", "=", " ", 
+   RowBox[{"Import", "[", "\"\<../ArrivalReport.dat\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"service", " ", "=", " ", 
+   RowBox[{"Import", "[", "\"\<../server0Report.dat\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"service1", " ", "=", " ", 
+   RowBox[{"Import", "[", "\"\<../server1Report.dat\>\"", "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.606561606127688*^9, 3.606561641936714*^9}, 
+   3.60656186179139*^9, {3.606562825110632*^9, 3.606562889682927*^9}, {
+   3.6065640712812147`*^9, 3.606564077996834*^9}, {3.608037429813237*^9, 
+   3.608037448661903*^9}, {3.608037553068273*^9, 3.608037568208509*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"arrivalTime", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"arrival", "[", 
+      RowBox[{"[", 
+       RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"Length", "[", "arrival", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"serviceTime", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"service", "[", 
+      RowBox[{"[", 
+       RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"Length", "[", "service", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"service1Time", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"service1", "[", 
+      RowBox[{"[", 
+       RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"Length", "[", "service1", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"queueLength", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"service", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+       RowBox[{"service", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "5"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"Length", "[", "service", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"busyPercent", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"service", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+       RowBox[{"service", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "4"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "3", ",", 
+       RowBox[{"Length", "[", "service", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"busyPercent1", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"service1", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+       RowBox[{"service1", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "4"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "3", ",", 
+       RowBox[{"Length", "[", "service1", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.606564084098428*^9, 3.606564104311201*^9}, {
+  3.606591808906576*^9, 3.6065918329362803`*^9}, {3.606591881248204*^9, 
+  3.6065919386798267`*^9}, {3.60659205705984*^9, 3.6065920666517153`*^9}, {
+  3.606592182870862*^9, 3.606592183636651*^9}, {3.6065922628400784`*^9, 
+  3.606592271670898*^9}, {3.606592320095441*^9, 3.6065923201855803`*^9}, {
+  3.606592375137939*^9, 3.606592382616064*^9}, {3.608037574474411*^9, 
+  3.608037580183095*^9}, {3.608037690319456*^9, 3.608037709219976*^9}, {
+  3.608037750046588*^9, 3.6080377578996077`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ExponentialFit", "[", 
+   RowBox[{"arrivalTime", ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Arrival Interval\>\"", ",", " ", "\"\<Relative Frequency\>\""}], 
+     "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<arrivalInterval.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExponentialFit", "[", 
+   RowBox[{"serviceTime", ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Service Time\>\"", ",", " ", "\"\<Relative Frequency\>\""}],
+      "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<serviceTime.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExponentialFit", "[", 
+   RowBox[{"service1Time", ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Service Time\>\"", ",", " ", "\"\<Relative Frequency\>\""}],
+      "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<service1Time.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6066082018994837`*^9, 3.606608251582315*^9}, {
+  3.608037615138623*^9, 3.6080376204197206`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"queueLength", ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Time\>\"", ",", "\"\<Queue Length\>\""}], "}"}]}], ",", 
+    RowBox[{
+    "PlotLabel", "\[Rule]", "\"\<Queue Length During Simulation\>\""}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "1000"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<queueLength.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.606592105510963*^9, 3.606592112137121*^9}, {
+   3.60659223815392*^9, 3.606592294331264*^9}, {3.606608255212697*^9, 
+   3.606608265747354*^9}, 3.606608307569992*^9, {3.606608809689761*^9, 
+   3.606608820918783*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Flatten", "::", "normal"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Nonatomic expression expected at position \
+\[NoBreak]\\!\\(1\\)\[NoBreak] in \[NoBreak]\\!\\(Flatten[$Failed]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/normal\\\", ButtonNote -> \
+\\\"Flatten::normal\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.606608824089713*^9, 3.6066088896180468`*^9, 3.606608933583105*^9, 
+   3.6066089915550833`*^9, 3.608037451534816*^9, 3.608037490836698*^9, 
+   3.6080376444296503`*^9, {3.608037711467478*^9, 3.6080377221744757`*^9}, 
+   3.608037777572994*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"busyPercent", ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Time\>\"", ",", "\"\<% Time Server is busy\>\""}], "}"}]}],
+     ",", 
+    RowBox[{"PlotLabel", "\[Rule]", "\"\<Server Utilization\>\""}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}]}], "\[IndentingNewLine]", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<serverUtilization.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"busyPercent1", ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Time\>\"", ",", "\"\<% Time Server is busy\>\""}], "}"}]}],
+     ",", 
+    RowBox[{"PlotLabel", "\[Rule]", "\"\<Server Utilization\>\""}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}]}], "\[IndentingNewLine]", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<server1Utilization.png\>\"", ",", "%", ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "320"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.606592351158702*^9, 3.6065923541007967`*^9}, {
+  3.606592395167899*^9, 3.6065924140184593`*^9}, {3.6066082698611298`*^9, 
+  3.606608309807403*^9}, {3.6066087972653503`*^9, 3.606608803862784*^9}, {
+  3.608037764619192*^9, 3.608037773610304*^9}}]
+},
+WindowSize->{733, 547},
+WindowMargins->{{Automatic, 328}, {Automatic, 80}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 341, 8, 55, "Input"],
+Cell[901, 30, 731, 16, 77, "Input"],
+Cell[1635, 48, 3125, 89, 209, "Input"],
+Cell[4763, 139, 1363, 35, 209, "Input"],
+Cell[CellGroupData[{
+Cell[6151, 178, 829, 19, 99, "Input"],
+Cell[6983, 199, 735, 15, 24, "Message"]
+}, Open  ]],
+Cell[7733, 217, 1607, 39, 275, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

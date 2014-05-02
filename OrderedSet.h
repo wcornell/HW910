@@ -14,6 +14,8 @@ Maintains an ordered set of pointers to class with method id()
 
 template <typename T>
 class OrderedSet {
+friend std::ostream& operator<<(std::ostream& os, const OrderedSet& s)
+	{os << s.str(); return os;	};
 public:
     OrderedSet(int maxsize=_ORDEREDSET__MAXSIZE){maxsize_=maxsize;};
     ~OrderedSet(){};

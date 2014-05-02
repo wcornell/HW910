@@ -15,7 +15,7 @@ CS 173 - Dr. Bressoud
 #include "Server.h"
 #include "Simulator.h"
 
-#define _CUSTOMERARRIVAL_ID 0
+#define _CUSTOMERARRIVAL_ID -1
 
 class CustomerArrival: public Event {
 
