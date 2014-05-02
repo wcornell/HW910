@@ -17,7 +17,7 @@
 GTEST_DIR = ~/gtest-1.7.0
 
 # Where to find user code.
-SRC_DIR = ..
+SRC_DIR = .
 USER_DIR = .
 TEST_DIR = .
 
@@ -31,7 +31,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread -std=c++0x
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = testDLListInt testDLList testQueue testOrderedSet
+TESTS = testDLListInt testDLList testQueue testOrderedSet queue
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -75,12 +75,17 @@ Event.o : $(SRC_DIR)/Event.cpp $(SRC_DIR)/Event.h
 Customer.o : $(SRC_DIR)/Customer.cpp $(SRC_DIR)/Customer.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Customer.cpp
 	
+Server.o : $(SRC_DIR)/Server.cpp $(SRC_DIR)/Server.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Server.cpp
+	
+CustomerArrival.o : $(SRC_DIR)/CustomerArrival.cpp $(SRC_DIR)/CustomerArrival.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/CustomerArrival.cpp
+	
+Simulator.o : $(SRC_DIR)/Simulator.cpp $(SRC_DIR)/Simulator.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Simulator.cpp
+	
 DLListInt.o : $(SRC_DIR)/DLListInt.cpp $(SRC_DIR)/DLListInt.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/DLListInt.cpp
-
-#testEvent.o : $(TEST_DIR)/testEvent.cpp \
-#                     $(SRC_DIR)/Event.h $(GTEST_HEADERS)
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/testEvent.cpp
 	
 testDLList.o : $(TEST_DIR)/testDLList.cpp \
                      $(SRC_DIR)/DLList.h $(GTEST_HEADERS)
@@ -104,4 +109,7 @@ testQueue : testQueueDrB.o Customer.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 	
 testOrderedSet : testOrderedSetDrB.o Event.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	
+queue : Event.o Customer.o Server.o CustomerArrival.o Simulator.o scratch.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

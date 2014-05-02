@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      9896,        279]
-NotebookOptionsPosition[      9390,        258]
-NotebookOutlinePosition[      9728,        273]
-CellTagsIndexPosition[      9685,        270]
+NotebookDataLength[      8971,        254]
+NotebookOptionsPosition[      8539,        236]
+NotebookOutlinePosition[      8877,        251]
+CellTagsIndexPosition[      8834,        248]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -174,8 +174,6 @@ Cell[BoxData[{
  CellChangeTimes->{{3.6066082018994837`*^9, 3.606608251582315*^9}, {
   3.608037615138623*^9, 3.6080376204197206`*^9}}],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"ListPlot", "[", 
@@ -184,10 +182,8 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"\"\<Time\>\"", ",", "\"\<Queue Length\>\""}], "}"}]}], ",", 
     RowBox[{
-    "PlotLabel", "\[Rule]", "\"\<Queue Length During Simulation\>\""}], 
-    "\[IndentingNewLine]", ",", 
-    RowBox[{"PlotRange", "\[Rule]", "1000"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+    "PlotLabel", "\[Rule]", "\"\<Queue Length During Simulation\>\""}]}], 
+   "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
    RowBox[{"\"\<queueLength.png\>\"", ",", "%", ",", 
@@ -195,25 +191,7 @@ Cell[BoxData[{
  CellChangeTimes->{{3.606592105510963*^9, 3.606592112137121*^9}, {
    3.60659223815392*^9, 3.606592294331264*^9}, {3.606608255212697*^9, 
    3.606608265747354*^9}, 3.606608307569992*^9, {3.606608809689761*^9, 
-   3.606608820918783*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"Flatten", "::", "normal"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Nonatomic expression expected at position \
-\[NoBreak]\\!\\(1\\)\[NoBreak] in \[NoBreak]\\!\\(Flatten[$Failed]\\)\
-\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
-ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/General/normal\\\", ButtonNote -> \
-\\\"Flatten::normal\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{
-  3.606608824089713*^9, 3.6066088896180468`*^9, 3.606608933583105*^9, 
-   3.6066089915550833`*^9, 3.608037451534816*^9, 3.608037490836698*^9, 
-   3.6080376444296503`*^9, {3.608037711467478*^9, 3.6080377221744757`*^9}, 
-   3.608037777572994*^9, 3.608054252137869*^9, 3.6080543228973722`*^9}]
-}, Open  ]],
+   3.606608820918783*^9}, {3.608058445776506*^9, 3.608058446576583*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -257,7 +235,7 @@ Cell[BoxData[{
   3.608037764619192*^9, 3.608037773610304*^9}}]
 },
 WindowSize->{733, 547},
-WindowMargins->{{396, Automatic}, {170, Automatic}},
+WindowMargins->{{312, Automatic}, {Automatic, 118}},
 FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
 StyleDefinitions->"Default.nb"
 ]
@@ -276,11 +254,8 @@ Cell[557, 20, 341, 8, 55, "Input"],
 Cell[901, 30, 731, 16, 77, "Input"],
 Cell[1635, 48, 3125, 89, 209, "Input"],
 Cell[4763, 139, 1363, 35, 209, "Input"],
-Cell[CellGroupData[{
-Cell[6151, 178, 829, 19, 99, "Input"],
-Cell[6983, 199, 781, 15, 24, "Message"]
-}, Open  ]],
-Cell[7779, 217, 1607, 39, 275, "Input"]
+Cell[6129, 176, 796, 17, 77, "Input"],
+Cell[6928, 195, 1607, 39, 275, "Input"]
 }
 ]
 *)

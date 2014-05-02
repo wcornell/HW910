@@ -10,9 +10,10 @@ Simulator::Simulator(int serverCount, std::string arrivalFile, bool surpressOutp
 	S = new Server*[serverCount];
 	vtime_ = 0; 
 	arrivalFile_ = arrivalFile;
-	surpressOutput_=surpressOutput; 
+	surpressOutput_ = surpressOutput; 
 	spaceAllocated_ = false;
 	serverCount_ = serverCount;
+	maxLenth_=0;
 }
 
 Simulator::~Simulator(){
@@ -24,6 +25,7 @@ Simulator::~Simulator(){
 		delete A;
 	}
 	delete [] S;
+	spaceAllocated_=false;
 }
 
 void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
@@ -65,6 +67,8 @@ void Simulator::doAllEvents(){
 		vtime_ = cur->time();
 		cur->execute();
 	}
+	
+	maxLenth_ = Q->maxLenth;
 }
 
 double Simulator::now() const {return vtime_;}

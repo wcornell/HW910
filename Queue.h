@@ -17,12 +17,13 @@ class Queue{
 	friend std::ostream& operator<<(std::ostream& os, const Queue& q)
 		{os << q.str(); return os;};
 	public:
-		Queue(int maxsize = _QUEUE_MAXSIZE){maxsize_=maxsize;};
+		Queue(int maxsize = _QUEUE_MAXSIZE){maxsize_=maxsize;maxLenth=0;};
 		~Queue(){};
 		int enqueue(T& x);
 		T dequeue();
 		int len();
 		std::string str();
+		int maxLenth;
 	
 	private:
 		int maxsize_;

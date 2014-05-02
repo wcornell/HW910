@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../DLListInt.h"
+#include "DLListInt.h"
 #include <iostream>
 #include <sstream>
 

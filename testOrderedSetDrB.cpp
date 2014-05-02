@@ -8,8 +8,8 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <string>
-#include "../OrderedSet.h"
-#include "../Server.h"
+#include "OrderedSet.h"
+#include "Server.h"
 
 using namespace std;
 

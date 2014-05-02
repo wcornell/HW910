@@ -136,6 +136,7 @@ T DLList<T>::_delete(int index){
 	
 	T retval = nodeToDelete->item_;
 	size--;
+	delete nodeToDelete;
 	return retval;
 }
 

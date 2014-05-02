@@ -17,6 +17,7 @@ public:
 	double now() const;
 	int insert(EPointer e);
 	void doAllEvents();
+	int maxQueueLength(){return maxLenth_;};
 	
 	virtual void setup(int custCount, double arrivalMean = 10.0, double serviceMean = 5.0);
 	
@@ -30,6 +31,7 @@ private:
 	CustomerArrival* A;
 	int serverCount_;
 	bool spaceAllocated_;
+	int maxLenth_;
 };
 
 
