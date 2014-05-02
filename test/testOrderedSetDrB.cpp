@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 #include "../OrderedSet.h"
-#include "../Event.h"
+#include "../Server.h"
 
 using namespace std;
 
