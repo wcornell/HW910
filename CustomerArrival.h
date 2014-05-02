@@ -20,7 +20,7 @@ CS 173 - Dr. Bressoud
 class CustomerArrival: public Event {
 
 public:
-	CustomerArrival(double mean = 10.0, Queue<Customer>* queue = NULL, Server * server = NULL, Simulator * sim = NULL, int count = 10, double time = 0.0, std::string statusFile = "ArrivalReport.dat" );
+	CustomerArrival(double mean = 10.0, Queue<Customer>* queue = NULL, Server * server = NULL, Simulator * sim = NULL, int serverCount, int count = 10, double time = 0.0, std::string statusFile = "ArrivalReport.dat" );
 	virtual std::string str() const;
 	virtual void execute();
 	virtual ~CustomerArrival();

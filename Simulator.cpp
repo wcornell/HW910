@@ -6,9 +6,11 @@
 using namespace std;
 
 Simulator::~Simulator(){
-	delete Q;
-	delete S;
-	delete A;
+	if (spaceAllocated_){
+		delete Q;
+		delete S;
+		delete A;
+	}
 }
 
 void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
@@ -17,10 +19,16 @@ void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
 		2. construct a Server and a CustomerArrival object
 		3. insert the CustomerArrival object into the OrderedSet
 	*/
+	if (spaceAllocated_){
+		delete Q;
+		delete S;
+		delete A;
+	}
 	Q = new Queue<Customer>(custCount);
 	S = new Server(serviceMean,Q,this,serverFile_);
 	A = new CustomerArrival(arrivalMean,Q,S,this,custCount,now(),arrivalFile_);
 	insert(A);
+	spaceAllocated_ = true;
 }
 
 int Simulator::insert(EPointer e){

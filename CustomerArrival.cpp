@@ -6,7 +6,7 @@ CS 173 - Dr. Bressoud */
 
 using namespace std;
 
-CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server * server, Simulator * sim, int count, double time, string statusFile)		// Constructor
+CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server * server, Simulator * sim, int serverCount, int count, double time, string statusFile)		// Constructor
 {
 	mean_ = mean;
 	Q = queue;
@@ -17,6 +17,7 @@ CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server * s
 	id_ = _CUSTOMERARRIVAL_ID;
 	exp = new exponential_distribution<>(1/mean);
 	gen = new default_random_engine(seed());
+	serverCount_ = serverCount;
 	
 	busyServer = 0;
 	lastArrival = 0;
