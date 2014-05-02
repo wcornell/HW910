@@ -1,4 +1,5 @@
 #include <sstream>
+#include <stdio.h>
 #include "Server.h"
 
 using namespace std;
@@ -15,14 +16,16 @@ Server::Server(double mean, Queue<Customer>* queue, Simulator* sim, string statu
 	exp = new exponential_distribution<>(1/mean);
 	gen = new default_random_engine(seed());
 	
-	status.open(statusFile.c_str(),ios::out);
-	status << "now  Tservice count  %busy  Q.len() meanWait" << endl;
+	status = fopen(statusFile.c_str(),"w");
+	fprintf(status, "       now   Tservice   count     busy  Q.len()  meanWait\n");
+	/*status.open(statusFile.c_str(),ios::out);
+	status << "now  Tservice count  %busy  Q.len() meanWait" << endl;*/
 }
 
 Server::~Server(){
 	delete exp;
 	delete gen;
-	status.close();
+	fclose(status);
 }
 
 void Server::startService(Customer& c){
@@ -63,7 +66,10 @@ void Server::execute(){
 }
 
 void Server::reportStatus(){
-	status << sim_->now() << " " << sim_->now()-lastStart << " " << count << " " << totalServiceTime/sim_->now() << " " << Q->len() << " " << waitTime/(double)count << endl;
+	/*status << sim_->now() << " " << sim_->now()-lastStart << " " << count << " " << totalServiceTime/sim_->now() << " " << Q->len() << " " << waitTime/(double)count << endl;*/
+	
+	fprintf(status,"%10.2f %10.2f %5d %10.2f %5d %10.2f\n"
+		,sim_->now(), sim_->now()-lastStart, count, totalServiceTime/sim_->now(), Q->len(), waitTime/(double)count);
 }
 
 bool Server::available(){return !busy;}

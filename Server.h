@@ -36,7 +36,7 @@ private:
 	std::default_random_engine *gen;
 	std::exponential_distribution<> *exp;
 	
-	std::fstream status;
+	FILE* status;
 
 };
 
