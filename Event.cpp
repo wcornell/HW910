@@ -34,3 +34,4 @@ void Event::execute(){
 int Event::id(){return id_;}
 double Event::time() const{return time_;}
 void Event::setTime(double time){time_=time;}
+ostream& operator<<(ostream& os, const Event& e) { os << e.str(); return os;};

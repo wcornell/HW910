@@ -2,9 +2,8 @@
 #define CUSTOMER_H
 #include<iostream>
 
-class Customer;
-
 class Customer{
+	
 	public:
 		Customer(double time=0.0, std::string label=""){time_ = time;label_ = label;};
 		std::string str() const;
@@ -16,5 +15,5 @@ class Customer{
 		double time_;
 		std::string label_;
 };
-
+std::ostream& operator<<(std::ostream& os, const Customer& c);
 #endif

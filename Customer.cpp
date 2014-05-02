@@ -25,3 +25,6 @@ string Customer::label() const{return label_;}
 
 void Customer::setTime(double time){time_=time;}
 //post: changes the Customer time value to time
+
+ostream& operator<<(ostream& os, const Customer& c)
+	{ os << c.str(); return os;};
