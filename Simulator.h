@@ -18,7 +18,7 @@ public:
 	int insert(EPointer e);
 	void doAllEvents();
 	
-	virtual void setup(int custCount, double arrivalMean = 10.0, int serverCount = 1, double serviceMean = 5.0);
+	virtual void setup(int custCount, double arrivalMean = 10.0, double serviceMean = 5.0);
 	
 private:
 	double vtime_;

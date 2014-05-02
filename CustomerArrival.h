@@ -40,8 +40,7 @@ private:
 	std::random_device seed;
 	std::default_random_engine *gen;			// Generator of random numbers
 	std::exponential_distribution<>* exp;	// Object for getting values from a particular distribution
-	
-	std::fstream status;
+	FILE* status;
 	
 };
 

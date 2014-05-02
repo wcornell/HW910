@@ -26,8 +26,7 @@ Simulator::~Simulator(){
 	delete [] S;
 }
 
-void Simulator::setup(int custCount, double arrivalMean, int serverCount, double serviceMean)
-{
+void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
 	/* post: setup environment for checkout simulation
 		1. construct a shared queue of custCount Customers
 		2. construct a Server and a CustomerArrival object

@@ -2,8 +2,7 @@
 
 BeginPackage["ServiceLine`"]
 
-ExponentialFit::usage = "PrettyPlot[data] returns a fit of exponential 
-distribution overlaid to a histogram of the data"
+ExponentialFit::usage = "ExponentialFit[data,label] returns a fit of exponential distribution overlaid to a histogram of the data using the given labels as x,y axes"
 
 
 
@@ -15,7 +14,7 @@ fit = FindDistributionParameters[data,ExponentialDistribution[\[Lambda]]];
 Show[{
 Plot[
 PDF[ExponentialDistribution[\[Lambda]/.fit],x]
-,{x,0,500}
+,{x,0,100}
 ,PlotRange->All
 ,PlotStyle->{Red,Thick}
 ,PlotLabel->label[[1]]<>" Mean = " <>ToString[1/\[Lambda]/.fit]

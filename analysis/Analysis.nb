@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      9849,        279]
-NotebookOptionsPosition[      9344,        258]
-NotebookOutlinePosition[      9681,        273]
-CellTagsIndexPosition[      9638,        270]
+NotebookDataLength[      9896,        279]
+NotebookOptionsPosition[      9390,        258]
+NotebookOutlinePosition[      9728,        273]
+CellTagsIndexPosition[      9685,        270]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -212,7 +212,7 @@ ButtonData:>\\\"paclet:ref/message/General/normal\\\", ButtonNote -> \
   3.606608824089713*^9, 3.6066088896180468`*^9, 3.606608933583105*^9, 
    3.6066089915550833`*^9, 3.608037451534816*^9, 3.608037490836698*^9, 
    3.6080376444296503`*^9, {3.608037711467478*^9, 3.6080377221744757`*^9}, 
-   3.608037777572994*^9}]
+   3.608037777572994*^9, 3.608054252137869*^9, 3.6080543228973722`*^9}]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -257,7 +257,7 @@ Cell[BoxData[{
   3.608037764619192*^9, 3.608037773610304*^9}}]
 },
 WindowSize->{733, 547},
-WindowMargins->{{Automatic, 328}, {Automatic, 80}},
+WindowMargins->{{396, Automatic}, {170, Automatic}},
 FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
 StyleDefinitions->"Default.nb"
 ]
@@ -278,9 +278,9 @@ Cell[1635, 48, 3125, 89, 209, "Input"],
 Cell[4763, 139, 1363, 35, 209, "Input"],
 Cell[CellGroupData[{
 Cell[6151, 178, 829, 19, 99, "Input"],
-Cell[6983, 199, 735, 15, 24, "Message"]
+Cell[6983, 199, 781, 15, 24, "Message"]
 }, Open  ]],
-Cell[7733, 217, 1607, 39, 275, "Input"]
+Cell[7779, 217, 1607, 39, 275, "Input"]
 }
 ]
 *)

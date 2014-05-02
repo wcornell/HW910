@@ -18,18 +18,19 @@ CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server** s
 	exp = new exponential_distribution<>(1/mean);
 	gen = new default_random_engine(seed());
 	serverCount_ = serverCount;
+	num_=0;
 	
 	busyServer = 0;
 	lastArrival = 0;
 	
-	status.open(statusFile.c_str(),ios::out);
-	status << "now interval count  %busy  Q.len()" << endl;
+	status = fopen(statusFile.c_str(),"w");
+	fprintf(status,"       now   Tservice   count     busy  Q.len()  meanWait\n");
 }
 
 CustomerArrival::~CustomerArrival(){
 	delete exp;
 	delete gen;
-	status.close();
+	fclose(status);
 }
 
 void CustomerArrival::execute(){
@@ -43,15 +44,20 @@ void CustomerArrival::execute(){
 	convert << ++num_;
 	Customer cust(sim_->now(), convert.str());
 	
+	bool serviced = false;
 	// decide what to do with the Customer
 	for(int i = 0; i < serverCount_; i++){
 		if (S[i]->available()){
 			S[i]->startService(cust);
-		}else{
-			busyServer += 1;
-			Q->enqueue(cust);
+			serviced = true;
+			break;
 		}
 	}
+	if (!serviced){
+		busyServer += 1;
+		Q->enqueue(cust);
+	}
+	
 	// schedule next CustomerArrival if allowed
 	if (num_ < count_){
 		time_ = sim_->now() + (*exp)(*gen);
@@ -62,7 +68,8 @@ void CustomerArrival::execute(){
 }
 
 void CustomerArrival::reportStatus(){
-	status << sim_->now() << " " << sim_->now()-lastArrival << " " << num_ << " " << busyServer/(double)num_ << " " << Q->len() << " " << endl;
+	fprintf(status,"%10.2f %10.2f %5d %10.2f %5d\n"
+		,sim_->now(), sim_->now()-lastArrival, num_, busyServer/(double)num_, Q->len());
 }
 
 string CustomerArrival::str() const{

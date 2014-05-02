@@ -22,6 +22,12 @@
 
 scratch
 testDLListInt
+testDLList
+testOrderedSet
+testQueue
+
+# Data Files
+*.dat
 
 # Gedit Backup
 *~
