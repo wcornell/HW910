@@ -5,15 +5,30 @@
 
 using namespace std;
 
+Simulator::Simulator(std::string arrivalFile, std::string serverFile, bool surpressOutput, int serverCount)
+{
+	S = new Server*[serverCount];
+	vtime_ = 0; 
+	arrivalFile_ = arrivalFile; 
+	serverFile_ = serverFile;
+	surpressOutput_=surpressOutput; 
+	spaceAllocated_ = false;
+	serverCount_ = serverCount;
+}
+
 Simulator::~Simulator(){
 	if (spaceAllocated_){
 		delete Q;
-		delete S;
+		for(int i = 0; i < serverCount_; i++){
+			delete S[i];
+		}
 		delete A;
 	}
+	delete [] S;
 }
 
-void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
+void Simulator::setup(int custCount, double arrivalMean, int serverCount, double serviceMean)
+{
 	/* post: setup environment for checkout simulation
 		1. construct a shared queue of custCount Customers
 		2. construct a Server and a CustomerArrival object
@@ -21,12 +36,17 @@ void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
 	*/
 	if (spaceAllocated_){
 		delete Q;
-		delete S;
+		for(int i = 0; i < serverCount_; i++){
+			delete S[i];
+		}
 		delete A;
 	}
 	Q = new Queue<Customer>(custCount);
-	S = new Server(serviceMean,Q,this,serverFile_);
-	A = new CustomerArrival(arrivalMean,Q,S,this,custCount,now(),arrivalFile_);
+	for(int i = 0; i < serverCount_; i++){
+		S[i] = new Server(serviceMean,Q,this,serverFile_);
+		S[i]->setid(i);
+	}
+	A = new CustomerArrival(arrivalMean,Q,S,this, serverCount_, custCount,now(),arrivalFile_);
 	insert(A);
 	spaceAllocated_ = true;
 }

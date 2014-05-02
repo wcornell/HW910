@@ -6,11 +6,13 @@ CS 173 - Dr. Bressoud */
 
 using namespace std;
 
-CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server * server, Simulator * sim, int serverCount, int count, double time, string statusFile)		// Constructor
+CustomerArrival::CustomerArrival(double mean, Queue<Customer>* queue, Server** server, Simulator * sim, int serverCount, int count, double time, string statusFile)	// Constructor
 {
 	mean_ = mean;
 	Q = queue;
-	S = server;
+	for(int i = 0; i < serverCount_; i++){
+		S[i] = server[i];
+	}
 	sim_ = sim;
 	count_ = count;
 	time_ = time;
@@ -44,13 +46,14 @@ void CustomerArrival::execute(){
 	Customer cust(sim_->now(), convert.str());
 	
 	// decide what to do with the Customer
-	if (S->available()){
-		S->startService(cust);
-	}else{
-		busyServer += 1;
-		Q->enqueue(cust);
+	for(int i = 0; i < serverCount_; i++){
+		if (S[i]->available()){
+			S[i]->startService(cust);
+		}else{
+			busyServer += 1;
+			Q->enqueue(cust);
+		}
 	}
-	
 	// schedule next CustomerArrival if allowed
 	if (num_ < count_){
 		time_ = sim_->now() + (*exp)(*gen);

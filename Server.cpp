@@ -11,8 +11,7 @@ Server::Server(double mean, Queue<Customer>* queue, Simulator* sim, string statu
 	lastStart = 0;
 	waitTime = 0; 
 	totalServiceTime = 0; 
-	time_=0;
-	id_ = _SERVER_ID; 
+	time_=0; 
 	exp = new exponential_distribution<>(1/mean);
 	gen = new default_random_engine(seed());
 	
@@ -74,3 +73,5 @@ string Server::str() const{
 	os << "<Server " << id_ << ":" << time_ << ">";
 	return os.str();
 }
+
+void Server::setid(int id){id_ = id;}

@@ -12,14 +12,13 @@ typedef Event* EPointer;
 
 class Simulator{
 public:
-	Simulator(std::string arrivalFile = "ArrivalReport.dat", std::string serverFile = "ServerReport.dat", bool surpressOutput = false)
-		{vtime_=0; arrivalFile_ = arrivalFile; serverFile_ = serverFile;surpressOutput_=surpressOutput; spaceAllocated_ = false};
+	Simulator(std::string arrivalFile = "ArrivalReport.dat", std::string serverFile = "ServerReport.dat", bool surpressOutput = false, int serverCount = 1);
 	virtual ~Simulator();
 	double now() const;
 	int insert(EPointer e);
 	void doAllEvents();
 	
-	virtual void setup(int custCount, double arrivalMean = 10.0, int serverCount, double serviceMean = 5.0);
+	virtual void setup(int custCount, double arrivalMean = 10.0, int serverCount = 1, double serviceMean = 5.0);
 	
 private:
 	double vtime_;
@@ -27,9 +26,9 @@ private:
 	std::string arrivalFile_, serverFile_;
 	bool surpressOutput_;
 	Queue<Customer>* Q;
-	Server* S;
+	Server** S;
 	CustomerArrival* A;
-	int servercount_;
+	int serverCount_;
 	bool spaceAllocated_;
 };
 

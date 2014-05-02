@@ -19,6 +19,7 @@ public:
 	void startService(Customer &c);
 	void execute();
 	void reportStatus();
+	void setid(int id = 0);
 	
 private:
 	double mean_;
