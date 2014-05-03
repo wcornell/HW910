@@ -44,7 +44,7 @@ void Simulator::setup(int custCount, double arrivalMean, double serviceMean){
 	Q = new Queue<Customer>(custCount);
 	for(int i = 0; i < serverCount_; i++){
 		ostringstream serverFile;
-		serverFile << "server" << i << "Report.dat";
+		serverFile << "Server" << i << "Report.dat";
 		S[i] = new Server(serviceMean,Q,this,serverFile.str());
 		S[i]->setid(i);
 	}

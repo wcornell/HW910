@@ -3,17 +3,28 @@ CS173
 
  Final Homework Project 9-10
  William Cornell
- Paul Yang
+ Paul Young
  
+Usage
+------
+We focused on the behavior of maxQueueLength.
+
+Makefile will generate 4 tests and an executable called "queue"
+queue is compiled from the driver "scratch.cpp" which takes 3 parameters arrivalMean, serviceMean and numberOfServers and runs the simulation for 1000 customers 100 times. It outpus the average maxiimum queue length at the end of the simulation.
+
+To explore the dependence of maxiimum queue length on service power(numberOfServers * 1/serviceMean) I issued the command:
+rm queue.dat; for i in {1..10}; do ./queue 10 $(($i * 5)) $i >> queue.dat; done
+
+To determine the transition point for queue stability, I issued the command:
+rm queue.dat; for i in {5..20} do queue.dat; queue 10 $i 1 
+
 Results
 ------
-We focused on the behavior of maxQueueLength
- 1. When the ratio serviceMean/numberOfServers is constant, the maximum Queue Length only depends on arrivalMean.
+ 1. Even when the service power is constant, the maximum Queue Length decreases linearly as the numberOfServers increases.
  2. For arrivalMean=10, maxLenth undergoes a stable->unstable transition when the above ratio is around 5.
  
 Description
 ------
- 
  Our final project is a generalization of the
  M/M/1 queueing simulation that we did for HW8.
  We have generalized the model in two important
