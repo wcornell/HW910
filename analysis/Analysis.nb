@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      8971,        254]
-NotebookOptionsPosition[      8539,        236]
-NotebookOutlinePosition[      8877,        251]
-CellTagsIndexPosition[      8834,        248]
+NotebookDataLength[      9012,        255]
+NotebookOptionsPosition[      8580,        237]
+NotebookOutlinePosition[      8918,        252]
+CellTagsIndexPosition[      8875,        249]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,20 +31,21 @@ Cell[BoxData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"arrival", " ", "=", " ", 
-   RowBox[{"Import", "[", "\"\<../ArrivalReport.dat\>\"", "]"}]}], 
+   RowBox[{"Import", "[", "\"\<ArrivalReport.dat\>\"", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"service", " ", "=", " ", 
-   RowBox[{"Import", "[", "\"\<../server0Report.dat\>\"", "]"}]}], 
+   RowBox[{"Import", "[", "\"\<server0Report.dat\>\"", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"service1", " ", "=", " ", 
-   RowBox[{"Import", "[", "\"\<../server1Report.dat\>\"", "]"}]}], 
+   RowBox[{"Import", "[", "\"\<server1Report.dat\>\"", "]"}]}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.606561606127688*^9, 3.606561641936714*^9}, 
    3.60656186179139*^9, {3.606562825110632*^9, 3.606562889682927*^9}, {
    3.6065640712812147`*^9, 3.606564077996834*^9}, {3.608037429813237*^9, 
-   3.608037448661903*^9}, {3.608037553068273*^9, 3.608037568208509*^9}}],
+   3.608037448661903*^9}, {3.608037553068273*^9, 3.608037568208509*^9}, {
+   3.608064678569824*^9, 3.608064681858903*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -251,11 +252,11 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[557, 20, 341, 8, 55, "Input"],
-Cell[901, 30, 731, 16, 77, "Input"],
-Cell[1635, 48, 3125, 89, 209, "Input"],
-Cell[4763, 139, 1363, 35, 209, "Input"],
-Cell[6129, 176, 796, 17, 77, "Input"],
-Cell[6928, 195, 1607, 39, 275, "Input"]
+Cell[901, 30, 772, 17, 77, "Input"],
+Cell[1676, 49, 3125, 89, 209, "Input"],
+Cell[4804, 140, 1363, 35, 209, "Input"],
+Cell[6170, 177, 796, 17, 77, "Input"],
+Cell[6969, 196, 1607, 39, 275, "Input"]
 }
 ]
 *)

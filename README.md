@@ -2,7 +2,9 @@ CS173
 ======
 
  Final Homework Project 9-10
+ 
  William Cornell
+ 
  Paul Young
  
 Usage
@@ -12,11 +14,13 @@ We focused on the behavior of maxQueueLength.
 Makefile will generate 4 tests and an executable called "queue"
 queue is compiled from the driver "scratch.cpp" which takes 3 parameters arrivalMean, serviceMean and numberOfServers and runs the simulation for 1000 customers 100 times. It outpus the average maxiimum queue length at the end of the simulation.
 
+The simulation also generates "ServerReport.dat" and a "ArrivalReport.dat", which can be analyzed using the Mathematica Package "ServiceLine.m", see "Analysis.nb" for an example.
+
 To explore the dependence of maxiimum queue length on service power(numberOfServers * 1/serviceMean) I issued the command:
-rm queue.dat; for i in {1..10}; do ./queue 10 $(($i * 5)) $i >> queue.dat; done
+<pre><code>rm queue.dat; for i in {1..10}; do ./queue 10 $(($i * 5)) $i >> queue.dat; done</code></pre>
 
 To determine the transition point for queue stability, I issued the command:
-rm queue.dat; for i in {5..20} do queue.dat; queue 10 $i 1 
+<pre><code>rm queue.dat; for i in {5..20} do queue.dat; queue 10 $i 1 </code></pre>
 
 Results
 ------
